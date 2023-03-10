@@ -26,6 +26,8 @@ body {}
 .cell {
     background: rgb(0, 0, 0);
     flex: 1;
+    border-radius: 5px;
+
 }
 
 .btnSize {

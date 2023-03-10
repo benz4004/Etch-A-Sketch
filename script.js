@@ -1,5 +1,6 @@
-
+const gridSizeChanger = document.querySelector('input');
 const container = document.querySelector('#container');
+let gridSize = 16;
 //------------------
 function createGrid(height, width) {
     const grid = document.createElement('div');
@@ -20,7 +21,7 @@ function createGrid(height, width) {
     container.appendChild(grid);
 }
 
-createGrid(16, 16);
+createGrid(gridSize, gridSize);
 
 //----------------
 function changeCellColor(e) {
@@ -43,12 +44,21 @@ cells.forEach(cell => cell.addEventListener('mouseover', changeCellColor));
 
 //------------------
 function resizeGrid(e) {
-    let size = prompt("Please enter Grid Size", 16);
+    //let size = prompt("Please enter Grid Size", 16);
     container.removeChild(document.querySelector('.grid'));
-    createGrid(size, size);
+
+    console.log(gridSize);
+    createGrid(gridSize, gridSize);
     const cells = document.querySelectorAll('.cell');
     cells.forEach(cell => cell.addEventListener('mouseenter', changeCellColor));
 
 }
 const btnSize = document.querySelector('.btnSize');
 btnSize.addEventListener('click', resizeGrid);
+//---------------
+function changeSize(e) {
+    gridSize = e.target.value;
+    const sizeText=document.querySelector('.grid-size');
+    sizeText.textContent=gridSize+" X "+gridSize;
+}
+gridSizeChanger.addEventListener('input', changeSize);
